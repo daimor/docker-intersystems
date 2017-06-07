@@ -21,7 +21,7 @@ ENV ISC_PACKAGE_INSTANCENAME=$product \
 # set-up and install Caché from distrib_tmp dir 
 WORKDIR ${TMP_INSTALL_DIR}
 
-ADD $product-$build-lnxrhx64.tar.gz
+ADD $product-$version-lnxrhx64.tar.gz .
 
 # cache distributive
 RUN [[ -d "$product-$version-lnxrhx64" ]] && ./$product-$version-lnxrhx64/cinstall_silent || ./cinstall_silent \
