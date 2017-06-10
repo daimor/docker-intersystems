@@ -1,6 +1,10 @@
 #!/bin/sh
 
-FILE="/wrc/$( [[ -z "$FIELDTEST" ]] && echo "distrib" || echo "FieldTest/$FIELDTEST" )/$ISC_PRODUCT-$ISC_BUILD-lnxrhx64.tar.gz"
+if [ -z "$FIELDTEST" ]; then
+  FILE="/wrc/distrib/$ISC_PRODUCT-$ISC_BUILD-lnxrhx64.tar.gz"
+else 
+  FILE="/wrc/FieldTest/$FIELDTEST/$ISC_PRODUCT-$ISC_BUILD-lnxrhx64.tar.gz"
+fi
 
 wget -qO /dev/null --keep-session-cookies \
  --save-cookies /dev/stdout \
