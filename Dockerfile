@@ -27,8 +27,9 @@ ADD $product-$version-lnxrhx64.tar.gz .
 RUN [[ -d "$product-$version-lnxrhx64" ]] && ./$product-$version-lnxrhx64/cinstall_silent || ./cinstall_silent \
  && ccontrol stop $ISC_PACKAGE_INSTANCENAME quietly \
 # Caché container main process PID 1 (https://github.com/zrml/ccontainermain)
- && curl -L https://github.com/daimor/ccontainermain/raw/master/distrib/linux/ccontainermain -o /ccontainermain \
+ && curl -L https://github.com/daimor/ccontainermain/releases/download/0.6/ccontainermain -o /ccontainermain \
  && chmod +x /ccontainermain \
+# clean temp folder
  && rm -rf $TMP_INSTALL_DIR 
 
 WORKDIR ${ISC_PACKAGE_INSTALLDIR}
@@ -36,4 +37,4 @@ WORKDIR ${ISC_PACKAGE_INSTALLDIR}
 # TCP sockets that can be accessed if user wants to (see 'docker run -p' flag)
 EXPOSE 57772 1972
 
-ENTRYPOINT ["/ccontainermain", "-cconsole", "-i", $product]
+ENTRYPOINT ["/ccontainermain", "-cconsole"]
