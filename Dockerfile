@@ -1,4 +1,4 @@
-FROM centos:6
+FROM centos:latest
 
 MAINTAINER Dmitry Maslennikov <mrdaimor@gmail.com>
 
@@ -7,14 +7,14 @@ RUN yum -y update \
  && yum -y install which tar hostname net-tools wget \
  && yum -y clean all
 
-ARG version=2016.2.1.803.0
+ARG version=2018.1.0.513.0
 ARG product=cache
 
 ENV TMP_INSTALL_DIR=/tmp/distrib
 
 # vars for Caché silent install
-ENV ISC_PACKAGE_INSTANCENAME=$product \
-    ISC_PACKAGE_INSTALLDIR="/opt/$product/" \
+ENV ISC_PACKAGE_INSTANCENAME=IRIS \
+    ISC_PACKAGE_INSTALLDIR="/usr/cachesys/" \
     ISC_PACKAGE_UNICODE="Y" \
     ISC_PACKAGE_CLIENT_COMPONENTS=""
 
@@ -24,7 +24,7 @@ WORKDIR ${TMP_INSTALL_DIR}
 ADD $product-$version-lnxrhx64.tar.gz .
 
 # cache distributive
-RUN [[ -d "$product-$version-lnxrhx64" ]] && ./$product-$version-lnxrhx64/cinstall_silent || ./cinstall_silent \
+RUN ./$product-$version-lnxrhx64/cinstall_silent \
  && ccontrol stop $ISC_PACKAGE_INSTANCENAME quietly \
 # Caché container main process PID 1 (https://github.com/zrml/ccontainermain)
  && curl -L https://github.com/daimor/ccontainermain/releases/download/0.6/ccontainermain -o /ccontainermain \
