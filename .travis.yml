@@ -4,9 +4,9 @@ services:
 - docker
 env:
   global:
-  - ISC_BUILD=2018.1.0.513.0
+  - ISC_BUILD=2018.1.1.643.0
   - DOCKER_TAG=2018.1
-  - ISC_PRODUCT=IDP 
+  - ISC_PRODUCT=IRIS 
   - DOCKER_IMAGE=daimor/intersystems-iris:$DOCKER_TAG
 branches:
   except:
