@@ -14,7 +14,7 @@ ENV TMP_INSTALL_DIR=/tmp/distrib
 
 # vars for Caché silent install
 ENV ISC_PACKAGE_INSTANCENAME=$product \
-    ISC_PACKAGE_INSTALLDIR="/opt/$product/" \
+    ISC_PACKAGE_INSTALLDIR="/usr/cachesys/" \
     ISC_PACKAGE_UNICODE="Y" \
     ISC_PACKAGE_CLIENT_COMPONENTS=""
 
