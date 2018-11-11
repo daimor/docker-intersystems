@@ -7,7 +7,7 @@ env:
   - ISC_PRODUCT=ensemble DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
   - ISC_PRODUCT=cache DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
   global:
-  - ISC_BUILD=2016.1.4.104.0
+  - ISC_BUILD=2016.1.4.104.2
   - DOCKER_TAG=2016.1
 branches:
   except:
