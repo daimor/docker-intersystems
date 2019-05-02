@@ -1,5 +1,5 @@
 sudo: required
-language: generic
+language: minimal
 services:
 - docker
 env:
@@ -14,8 +14,23 @@ branches:
   - master
 install:
 - "./download.sh"
+- |
+  docker run -d --name ftpd_server --rm \
+    -e FTP_USER_NAME=user \
+    -e FTP_USER_PASS=user \
+    -e FTP_USER_HOME=/opt/ftp \
+    -v `pwd`/ftp:/opt/ftp \
+    --network host \
+    stilliard/pure-ftpd
 script:
-- docker build --build-arg product=$ISC_PRODUCT --build-arg version=$ISC_BUILD -t $DOCKER_IMAGE .
+- |
+  docker build \
+    --network host \
+    --build-arg product=$ISC_PRODUCT \
+    --build-arg version=$ISC_BUILD \
+    -t $DOCKER_IMAGE \
+    .
 after_success:
+- docker stop ftpd_server
 - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
 - docker push $DOCKER_IMAGE
