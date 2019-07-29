@@ -4,11 +4,11 @@ services:
 - docker
 env:
   matrix:
-  - ISC_PRODUCT=ensemble DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
-  - ISC_PRODUCT=cache DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
+  - UNICODE=Y DOCKER_TAG=2018.1 ISC_PRODUCT=ensemble DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
+  - UNICODE=Y DOCKER_TAG=2018.1 ISC_PRODUCT=cache DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
+  - UNICODE=N DOCKER_TAG=8bit-2018.1 ISC_PRODUCT=cache DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
   global:
   - ISC_BUILD=2018.1.2.309.5
-  - DOCKER_TAG=8bit-2018.1
 branches:
   except:
   - master
@@ -28,6 +28,7 @@ script:
     --network host \
     --build-arg product=$ISC_PRODUCT \
     --build-arg version=$ISC_BUILD \
+    --build-arg unicode=$UNICODE \
     -t $DOCKER_IMAGE \
     .
 after_success:

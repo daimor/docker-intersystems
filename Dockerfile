@@ -9,13 +9,14 @@ RUN yum -y update \
 
 ARG version=2016.2.1.803.0
 ARG product=cache
+ARG unicode=Y
 
 ENV TMP_INSTALL_DIR=/tmp/distrib
 
 # vars for Caché silent install
 ENV ISC_PACKAGE_INSTANCENAME=$product \
     ISC_PACKAGE_INSTALLDIR="/usr/cachesys/" \
-    ISC_PACKAGE_UNICODE="N" \
+    ISC_PACKAGE_UNICODE=$unicode \
     ISC_PACKAGE_CLIENT_COMPONENTS=""
 
 # set-up and install Caché from distrib_tmp dir 
