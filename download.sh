@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -z "$FIELDTEST" ]; then
-  FILE="/wrc/distrib/$ISC_PRODUCT-$ISC_BUILD-lnxrhx64.tar.gz"
+  FILE="/wrc/Live/ServerKits/$ISC_PRODUCT-$ISC_BUILD-lnxrhx64.tar.gz"
 else 
   FILE="/wrc/FieldTest/$FIELDTEST/$ISC_PRODUCT-$ISC_BUILD-lnxrhx64.tar.gz"
 fi
