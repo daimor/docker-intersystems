@@ -1,4 +1,4 @@
-FROM centos:6
+FROM centos:7
 
 LABEL maintainer="Dmitry Maslennikov <mrdaimor@gmail.com>"
 
