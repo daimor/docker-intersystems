@@ -8,7 +8,7 @@ env:
   - UNICODE=Y DOCKER_TAG=2018.1 ISC_PRODUCT=cache DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
   - UNICODE=N DOCKER_TAG=8bit-2018.1 ISC_PRODUCT=cache DOCKER_IMAGE=daimor/intersystems-$ISC_PRODUCT:$DOCKER_TAG
   global:
-  - ISC_BUILD=2018.1.2.309.5
+  - ISC_BUILD=2018.1.4.505.1
 branches:
   except:
   - master
